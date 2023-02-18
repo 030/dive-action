@@ -1,0 +1,13 @@
+---
+inputs:
+  image:
+    description: image
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        curl -L https://github.com/030/dive/releases/download/v0.10.1/dive-ubuntu-latest -o dive && \
+        chmod +x dive && \
+        CI=true ./dive ${{ inputs.image }}
+      shell: bash
