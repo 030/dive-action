@@ -10,5 +10,5 @@ runs:
   steps:
     - uses: docker://wagoodman/dive:v0.11.0
       with:
-        entrypoint: /bin/bash
+        #entrypoint: /bin/bash
         args: CI=true dive ${{ inputs.image }}
