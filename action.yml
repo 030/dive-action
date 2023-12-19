@@ -8,7 +8,8 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - run: docker build -t ${{ inputs.image }} .
+      shell: bash
     - uses: docker://wagoodman/dive:v0.11.0
       with:
-        #entrypoint: /bin/bash
         args: ${{ inputs.image }} --ci
