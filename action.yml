@@ -1,4 +1,6 @@
 ---
+name: dive
+description: dive
 inputs:
   image:
     description: image
@@ -6,8 +8,8 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - run: |
-        curl -L https://github.com/030/dive/releases/download/v0.10.1/dive-ubuntu-latest -o dive && \
-        chmod +x dive && \
-        CI=true ./dive ${{ inputs.image }}
+    - run: docker build -t ${{ inputs.image }} .
       shell: bash
+    - uses: docker://wagoodman/dive:v0.11.0
+      with:
+        args: ${{ inputs.image }} --ci
